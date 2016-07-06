@@ -1,11 +1,42 @@
 <head>
   
   
+  
 <a href="/users/sign_in"> 로그인 </a>  
 
-<p><%= current_user%></p>
+<% if user_signed_in? %>
+<p>로그인 시 표시 되는 정보.</p>
+<p>E mail = <%= current_user.email %></p>
+이름 = <%= current_user.name %>
+
+
+<%end%>
+</br>
+test1@lion.net ~ test3@lion.net//PW:111111
+시도 해보세요..ㅎㅎ</br>
+<a href="/users/sign_out">Log Out</a>
 </head>
 <body>
+  
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="date-label">7월5일 화요일
     <div class="timetable">
       <table class="table"> 
@@ -22,7 +53,10 @@
             <th scope=row>오후6시</th> 
               <td>Mark</td> 
               <td>Otto</td> 
-              <td>신청</td> </tr> 
+              <td>
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                  신청
+                </button></td> </tr> 
           <tr> 
             <th scope=row>오후7시</th> 
             <td>Jacob</td> 
