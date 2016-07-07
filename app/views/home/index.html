@@ -20,23 +20,66 @@ test1@lion.net ~ test3@lion.net//PW:111111
   
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-body">
-        ...
+       <div class="action-buttons">      
+           <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-info">
+                 <input type="radio" name="options" id="option1" autocomplete="off"> 매치
+                </label>
+                <label class="btn btn-info">
+                 <input type="radio" name="options" id="option2" autocomplete="off"> 교환
+                </label>
+                <label class="btn btn-info">
+                 <input type="radio" name="options" id="option3" autocomplete="off"> 모름
+                </label>
+           </div>
+           <span class="request-button">
+            <button type="button" class="btn btn-primary">신청</button>
+           </span>
+        </div>
+        <div class="comment-form">
+            <form>
+              <div class="form-group">
+                <!--<label for="recipient-name" class="control-label"></label>-->
+                
+                <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">댓글</button>
+                      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                
+                 <!--<input type="text" class="form-control" id="recipient-name" placeholder="댓글을 남기세요">-->
+                 <!--<button type="button" class="btn btn-primary">댓글</button>-->
+              </div>
+            </form>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">현황Ex) 신청 2 교환 0 모름 2</h3>
+          </div>
+          <div class="panel-body">
+            - 댓글댓글
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+<!--timetable-->
   <div class="date-label">7월5일 화요일
     <div class="timetable">
       <table class="table"> 
@@ -44,33 +87,79 @@ test1@lion.net ~ test3@lion.net//PW:111111
           <tr> 
             <th>시간</th> 
             <th>팀</th> 
-            <th>이름</th> 
+            <th>예약자</th> 
             <th>그려</th> 
           </tr> 
         </thead> 
-        <tbody> 
+        <tbody>
+          <tr class="danger"> 
+             <th scope=row>오후5시</th> 
+             <td>운동부훈련</td> 
+             <td>-</td> 
+             <td>-</td>
+          </tr> 
+           
           <tr class="success"> 
             <th scope=row>오후6시</th> 
-              <td>Mark</td> 
-              <td>Otto</td> 
+              <td>아축</td> 
+              <td>김축구</td> 
               <td>
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
-                  신청
-                </button></td> </tr> 
-          <tr> 
-            <th scope=row>오후7시</th> 
-            <td>Jacob</td> 
-            <td>Thornton</td> 
-            <td>@fat</td> 
+                <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="아축">신청</button>
+              </td> 
           </tr> 
           <tr class="danger"> 
-            <th scope=row>오후8시</th> 
-            <td>Larry</td> 
-            <td>the Bird</td> 
+            <th scope=row>오후7시</th> 
+            <td>ESC</td> 
+            <td>박사커</td> 
             <td>불가</td> 
+          </tr> 
+          <tr class="success"> 
+            <th scope=row>오후8시</th> 
+            <td>옵티말</td> 
+            <td>사람인</td> 
+            <td>
+                <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="옵티말">신청</button>
+            </td> 
+          </tr> 
+          </tr> 
+          <tr class="success"> 
+            <th scope=row>오후9시</th> 
+            <td>KP</td> 
+            <td>이금자</td> 
+            <td>
+                <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="KP">신청</button>
+            </td> 
+          </tr> 
+          </tr> 
+          <tr class="success"> 
+            <th scope=row>오후10시</th> 
+            <td>공돌이</td> 
+            <td>홍성대</td> 
+            <td>
+                <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="공돌이">신청</button>
+            </td> 
           </tr> 
         </tbody> 
       </table>
     </div>  
   </div>
+  
+<script>
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('(엠블럼) ' + recipient)
+//   modal.find('.modal-body input').val(recipient)
+})
+</script>  
+  <script>
+// $(function(){
+//     $(".sinchung").click(function(){
+//         $('div.modal').modal();
+//     })
+// })
+//</script>
 </body>
