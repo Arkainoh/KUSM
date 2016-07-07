@@ -2,12 +2,15 @@
   
   
   
-<a href="/users/sign_in"> 로그인 </a>  
+<a href="/users/sign_in"> 로그인 </a>  </br>
+<a href="/users/sign_up"> 회원가입 </a>  
 
 <% if user_signed_in? %>
 <p>로그인 시 표시 되는 정보.</p>
 <p>E mail = <%= current_user.email %></p>
 이름 = <%= current_user.name %>
+소속 팀 = <%= current_user.real_team %>
+예약 팀명 = <%= current_user.team %>
 
 
 <%end%>
