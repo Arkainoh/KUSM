@@ -1,0 +1,20 @@
+<html>
+    <head></head>
+    <body>
+        <% @tuple.each do |x| %>
+        <%= x.userId %>/
+        <%= x.userName %>/
+        <%= x.groupName %>/
+        <%= x.resDay %>/
+        <%= x.hourStr %>/
+        <%= x.preNum %>/
+        <%= x.totalNum %>/
+        <%= x.monthCnt %>/
+        <%= x.regDate %>/
+        <%= x.status %>/
+        <br>
+        <% end %>
+        
+    </body>
+
+</html>

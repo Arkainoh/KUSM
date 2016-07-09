@@ -14,6 +14,16 @@
 ActiveRecord::Schema.define(version: 20160706132434) do
 
   create_table "rsvinfos", force: :cascade do |t|
+    t.string   "userId"
+    t.string   "userName"
+    t.string   "groupName"
+    t.string   "resDay"
+    t.string   "hourStr"
+    t.integer  "preNum"
+    t.integer  "totalNum"
+    t.integer  "monthCnt"
+    t.string   "regDate"
+    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
