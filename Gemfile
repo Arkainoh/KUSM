@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri'
 
+gem 'fullcalendar-rails'
+gem 'momentjs-rails' #for fullcalendar
+
+
+gem 'nokogiri'
 gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

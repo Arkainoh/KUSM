@@ -1,10 +1,10 @@
 <head>
   
   
-<div id="#">  
+  
 <a href="/users/sign_in"> 로그인 </a>  </br>
 <a href="/users/sign_up"> 회원가입 </a>  
-</div>
+
 <% if user_signed_in? %>
 <p>로그인 시 표시 되는 정보.</p>
 <p>E mail = <%= current_user.email %></p>
@@ -90,8 +90,7 @@ test1@lion.net ~ test3@lion.net//PW:111111
 <div class="timetable">
  <% for i in 1..@last_day.to_i %>
   <% 
-      date = Time.new( @t[0], @t[1], i)
-      da = date.to_a # da(datearray) => [sec, min, hour, day, month, year, wday, yday, isdst, zone] 
+      da = Time.new( @t[0], @t[1], i).to_a # da(datearray) => [sec, min, hour, day, month, year, wday, yday, isdst, zone] 
       %> 
       
   
@@ -105,13 +104,8 @@ test1@lion.net ~ test3@lion.net//PW:111111
              else        "토"
            end
      %>
-     
   
-  <% if date.yday == @now.yday %>
-    <div class="date-label" id="today"> <%= da[4] %>월 <%= da[3] %>일 <%= day %>요일 <a href="#">맨위로</a></div>
-  <% else %>
     <div class="date-label" id="<%=da[5]%>_<%=da[4]%>_<%=da[3]%>"> <%= da[4] %>월 <%= da[3] %>일 <%= day %>요일</div>
-  <% end %>
     <div class="schedule">
       <table class="table"> 
         <thead> 
@@ -168,11 +162,11 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 //</script>
 <script>
 $(function(){
-  $(document).ready(function () {
-      // Handler for .ready() called.
-      $('html, body').animate({
-          scrollTop: $('#today').offset().top
-      }, 'slow');
+  var container = $('.timetable'),
+    scrollTo = $('#2016_7_14');
+
+  container.animate({
+    scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
   });
 });
 </script>

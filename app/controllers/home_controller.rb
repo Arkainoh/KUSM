@@ -4,8 +4,17 @@ require 'json'
 
 class HomeController < ApplicationController
   def index
+     @yeyak = Rsvinfo.all
+     
+     first_day = Rsvinfo.all.first #DB table 첫번째 row
+     @last_day = Rsvinfo.all.last.resDay.split('-')[2] # DB table 에서 마지막 row의 resDay에서 'day' 부분을 가져옴
+     
+     @t = first_day.resDay.split('-') #t => ex) ["2016", "07", "01"]
+     @now = Time.new.localtime("+09:00") #현재시간 구하기
+     
   end
   
+
   def showDB
     @tuple = Rsvinfo.all
   end
