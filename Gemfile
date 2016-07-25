@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'fullcalendar-rails'
-gem 'momentjs-rails' #for fullcalendar
-
+gem 'momentjs-rails'
 
 gem 'nokogiri'
 gem 'devise'

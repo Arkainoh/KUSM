@@ -4,6 +4,44 @@ require 'json'
 
 class HomeController < ApplicationController
   def index
+     
+     
+  end
+  
+  def searchbar
+    searchquery = params[:searchquery]
+    searchquery = searchquery.downcase()
+    
+    @searchResult = []
+    
+    Rsvinfo.all.each do |x|
+      
+      if ( x.userId.downcase().include?(searchquery) ||
+        x.userName.downcase().include?(searchquery) ||
+        x.groupName.downcase().include?(searchquery) )
+      
+      @searchResult << x
+      
+      end
+    end
+=begin
+    tuple = Rsvinfo.new
+                  tuple.userId = y["userId"]
+                  tuple.userName = y["userName"]
+                  tuple.groupName = y["groupName"]
+                  tuple.resDay = y["resDay"]
+                  tuple.hourStr = y["hourStr"]
+                  tuple.preNum = y["preNum"]
+                  tuple.totalNum = y["totalNum"]
+                  tuple.monthCnt = y["monthCnt"]
+                  tuple.regDate = y["regDate"]
+                  tuple.status = y["status"]
+                  tuple.save
+    
+=end
+  end
+  
+  def main_page
      @yeyak = Rsvinfo.all
      
      first_day = Rsvinfo.all.first #DB table 첫번째 row
@@ -11,7 +49,6 @@ class HomeController < ApplicationController
      
      @t = first_day.resDay.split('-') #t => ex) ["2016", "07", "01"]
      @now = Time.new.localtime("+09:00") #현재시간 구하기
-     
   end
   
 
