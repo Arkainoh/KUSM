@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  get '/search_result' => 'home#searchbar'
+  get '/search_result' => 'home#search_result'
   get 'home/index'
   get '/' => 'home#index'
   get 'home/main_page'

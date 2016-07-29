@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>KUSM - Korea University Soccer Matcher</title>
+    
+        <style>
+      .mytuple:hover {
+          cursor:pointer;
+      }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>예약 현황</h1>
+    <div class="container">
+        <div class="timetable">
+    
+            <div class="schedule">
+              <table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
+                <thead> 
+                  <tr style="background-color:black;color:#ccc"> 
+                    <th>예약일</th>
+                    <th>시간</th> 
+                    <th>예약팀</th>
+                    <th>소속팀</th>
+                    <th>예약자(ID)</th>
+                    <!--<th>신청</th>-->
+                  </tr> 
+                </thead>
+                
+                <tbody>
+                  <% @searchResult.each do |y| %>
+                  
+                  
+                  <tr class="success mytuple" onclick="mySlider(<%= y.id %>)"> <!-- 한 줄 -->
+                      <td><%= y.resDay %></td> 
+                      <td><%= y.hourStr.split(' ~ ')[0] %></td>
+                      <td><%= y.groupName %></td>
+                      <td>-</td> 
+                      <td><%= y.userName %>(<%= y.userId %>)</td> 
+                      <!--
+                      <td>
+                        <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-abc=< %y.userId% >>신청</button>
+                      </td> 
+                      -->
+                  </tr>
+                  <tr class="slide-content" id="slide_content_<%= y.id %>">
+                      <td colspan="4" class="myslide">
+                          <!-- 이부분에 게시글 및 신청 버튼 활성화 -->
+                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
+                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
+                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
+                          <br/>
+                          <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-abc=<%= y.userId %>>신청</button>
+                      </td>
+                  </tr>
+                  
+                  
+                 
+                  <% end %>
+                </tbody>
+                
+              </table>
+            </div>  
+          
+        </div>
+    </div>
+    <!--/.timetable-->
+    <script>
+    
+        $(".slide-content").hide();
+
+        function mySlider(slideId) {
+            $("#slide_content_"+slideId).slideToggle();
+        }
+    </script>
+
+</body>
+</html>

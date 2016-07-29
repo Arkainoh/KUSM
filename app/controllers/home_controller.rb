@@ -11,10 +11,15 @@ class HomeController < ApplicationController
     end
   end
   
-  def searchbar
+  def search_result
     searchquery = params[:searchquery]
     searchquery = searchquery.downcase()
-
+    
+    if searchquery == ""
+          redirect_to "/home/main_page" #if user doesn't provide anything, do nothing
+      return -1
+    end
+    
     @searchResult = []
     
     Rsvinfo.all.each do |x|
@@ -57,17 +62,16 @@ class HomeController < ApplicationController
   end
   
   def test1
-    
     @event = Rsvinfo.all
-
   end
+  
 
   def showDB
     @tuple = Rsvinfo.all
   end
   
   def updateDB
-    # 터미널에서 Rsvinfo.updateDB 2016, 7 이런식으로 사용!
+      
   end
 
   
