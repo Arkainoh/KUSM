@@ -119,7 +119,8 @@ class Rsvinfo < ActiveRecord::Base
         fullStr = self.hourStr
         splitedStr = fullStr.split('~')
         splitedStr[0].delete!(' ')
-        splitedStr[1].delete!(' ')
-        return splitedStr[0]
+        
+        splitedStr[0].delete!(':00')
+        return splitedStr[0] #아직 앞의 0은 없애지 않음 ex) 09:00 -> 09
     end    
 end

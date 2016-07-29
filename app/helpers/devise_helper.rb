@@ -6,8 +6,20 @@ module DeviseHelper
   # This method is intended to stay simple and it is unlikely that we are going to change
   # it to add more behavior or options.
   def devise_error_messages!
-    return "" if resource.errors.empty?
+    return '' if resource.errors.empty?
 
-    'asdf'
+    messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    sentence = I18n.t("errors.messages.not_saved",
+                      count: resource.errors.count,
+                      resource: resource.class.model_name.human.downcase)
+    html = <<-HTML
+    <div class="alert alert-error alert-danger"> <button type="button"
+    class="close" data-dismiss="alert">×</button>
+    <h2>#{sentence}</h2>
+      #{messages}
+    </div>
+    HTML
+
+    html.html_safe
   end
 end
