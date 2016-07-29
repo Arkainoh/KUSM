@@ -144,6 +144,7 @@
               <div class="border-form-div">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
               <%= devise_error_messages! %>
+              <div><%= resource.errors.inspect %></div>
               <div class="form-group">
                   <div class="col-xs-offset-1 col-xs-10">
                       <%= f.label :email %><br/>

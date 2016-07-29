@@ -14,14 +14,16 @@ class HomeController < ApplicationController
   def searchbar
     searchquery = params[:searchquery]
     searchquery = searchquery.downcase()
-    
+
     @searchResult = []
     
     Rsvinfo.all.each do |x|
       
       if ( x.userId.downcase().include?(searchquery) ||
         x.userName.downcase().include?(searchquery) ||
-        x.groupName.downcase().include?(searchquery) )
+        x.groupName.downcase().include?(searchquery) ||
+        x.resDay.include?(searchquery)
+        )
       
       @searchResult << x
       
@@ -57,17 +59,15 @@ class HomeController < ApplicationController
   def test1
     
     @event = Rsvinfo.all
-    
 
   end
-  
 
   def showDB
     @tuple = Rsvinfo.all
   end
   
   def updateDB
-    # Rsvinfo.updateDB 2016, 7 이런식으로 사용!
+    # 터미널에서 Rsvinfo.updateDB 2016, 7 이런식으로 사용!
   end
 
   
