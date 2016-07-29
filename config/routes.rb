@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
  
   devise_for :users
+  
   get 'home/index'
   get 'home/updateDB/:timeInfo' => 'home#updateDB'
   # :timeInfo looks like 2016_8 (year:2016 month:8)
-  get 'home/test'
+  get 'home/test1'
   get 'home/showDB'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#template_index'
+  root 'home#index'
   get '/search_result' => 'home#searchbar'
   get 'home/index'
   get '/' => 'home#index'

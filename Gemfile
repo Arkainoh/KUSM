@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 
 gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+
+gem 'momentjs-rails', '~> 2.11', '>= 2.11.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 gem 'nokogiri'
 gem 'devise'

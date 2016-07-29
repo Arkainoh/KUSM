@@ -4,8 +4,11 @@ require 'json'
 
 class HomeController < ApplicationController
   def index
-     
-     
+    unless user_signed_in?
+      redirect_to "/users/sign_in"
+    else
+      redirect_to "/home/main_page"
+    end
   end
   
   def searchbar
@@ -37,11 +40,11 @@ class HomeController < ApplicationController
                   tuple.regDate = y["regDate"]
                   tuple.status = y["status"]
                   tuple.save
-    
 =end
   end
   
   def main_page
+    
      @yeyak = Rsvinfo.all
      
      first_day = Rsvinfo.all.first #DB table 첫번째 row
@@ -49,6 +52,13 @@ class HomeController < ApplicationController
      
      @t = first_day.resDay.split('-') #t => ex) ["2016", "07", "01"]
      @now = Time.new.localtime("+09:00") #현재시간 구하기
+  end
+  
+  def test1
+    
+    @event = Rsvinfo.all
+    
+
   end
   
 

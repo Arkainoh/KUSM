@@ -19,7 +19,7 @@
 }
 	
 .flexsearch--input-wrapper {
-	padding: 0 66px 0 0; /* Right padding for submit button width */
+	padding: 0 60px 0 0; /* Right padding for submit button width */
 	overflow: hidden;
 }
 
@@ -31,7 +31,7 @@
  * Configurable Styles *
  ***********************/
 .flexsearch {
-  padding: 0 25px 0 25px; /* Padding for other horizontal elements */
+  padding: 0 0px 0 0px; /* Padding for other horizontal elements */
 }
 
 .flexsearch--input {
@@ -39,7 +39,7 @@
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
  	height: 60px;
-  padding: 0 46px 0 10px;
+  padding: 0 40px 0 10px;
 	border-color: #888;
   border-radius: 35px; /* (height/2) + border-width */
   border-style: solid;
