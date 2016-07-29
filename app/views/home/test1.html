@@ -6,43 +6,49 @@
         <script src='lib/jquery.min.js'></script>
         <script src='lib/moment.min.js'></script>
         <script src='fullcalendar/fullcalendar.js'></script>
-      
+        <!--<script src='fullcalendar/lang-all.js'></script>-->
       
     	<script>
 
 
 	$(document).ready(function() {
 		
+		
 		$('#calendar').fullCalendar({
+			
+			//lang : 'ko',
 			header: {
 						left: 'prev,next today',
 						center: 'title',
 						right: 'month,agendaWeek,agendaDay'
 					},
-			contentHeight: 500,
+			contentHeight: 550,
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
-			views: {
+			/*    views: {
         			agenda: {
             			eventLimit: 2 // adjust to 6 only for agendaWeek/agendaDay
-            		
         					}
-    					},
+    					},*/
 			windowResize: function(view) {
     		//alert('The calendar has adjusted to a window resize');
 			},
-			
+		
 			minTime: "08:00:00",
 			maxTime: "23:00:00",
 			defaultView:'agendaWeek',
 			allDaySlot : false,
+			selectable: true,
 			displayEventEnd: 'true', //12~1 for month
-			
+			slotLabelFormat : 'h(:mm)a',
 			events: [
 						<% @event.each do |y| %>
-							{title: '<%=y.groupName%>, <%= y.userName %>',
-							start: '<%=y.resDay%>T<%=y.hourStr.split[0]%>',
-							end :	'<%=y.resDay%>T<%=y.hourStr.split[2]%>'},
+							{
+								title: '<%=y.groupName%>', //, <%= y.userName %>
+								start: '<%=y.resDay%>T<%=y.hourStr.split[0]%>',
+								end :	'<%=y.resDay%>T<%=y.hourStr.split[2]%>',
+								description: '<%= y.userName %>'	
+							},
 						<%end%>
 						{
 							title: 'Open',
