@@ -1,0 +1,41 @@
+<head>
+    <style>
+        .panel-head .date { float:right }
+        .panel-content {padding-top: 15px;}
+        .category {padding-right: 5px;}
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <div class="panel-head">
+              <b class="category">분류</b><span class="title">제목</span><span class="date">작성시간</span></br>
+              <span class="writer">작성자정보</span>
+          </div>
+        <div class="panel-content">글 내용</div>
+      </div>
+    </div>
+</div>
+
+<% @post.each do |p| %>
+제목 : <%= p.title %> <br>
+글 내용 : <%= p.content %><br>
+정보 : <%= p.writer_info %><br>
+팀 : <%= p.writer_team %><br>
+연락처 : <%= p.writer_contact %><br>
+매치 시간 : <%= p.writer_time %><br>
+
+<hr>
+<% end %>
+</body>
+
+        <!--
+        제목 : title
+        이름(ID) : writer_info
+        팀명 : writer_team
+        연락처 : writer_contact
+        시간 : writer_time //경기하는 시간
+        내용 : content
+        
+        -->

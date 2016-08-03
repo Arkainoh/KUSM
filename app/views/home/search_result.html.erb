@@ -18,11 +18,11 @@
 </head>
 
 <body>
-
-    <h1>예약 현황</h1>
-    <div class="container">
-        <div class="timetable">
     
+    <div class="container">
+        <h1>예약 현황</h1>
+        <div class="timetable">
+            
             <div class="schedule">
               <table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
                 <thead> 
@@ -38,7 +38,6 @@
                 
                 <tbody>
                   <% @searchResult.each do |y| %>
-                  
                   
                   <tr class="success mytuple" onclick="mySlider(<%= y.id %>)"> <!-- 한 줄 -->
                       <td><%= y.resDay %></td> 
@@ -63,8 +62,6 @@
                       </td>
                   </tr>
                   
-                  
-                 
                   <% end %>
                 </tbody>
                 

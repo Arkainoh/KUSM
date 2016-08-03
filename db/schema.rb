@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712044442) do
+ActiveRecord::Schema.define(version: 20160802052951) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "writer_info"
+    t.string   "writer_team"
+    t.string   "writer_contact"
+    t.string   "writer_time"
+    t.string   "content"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "rsvinfos", force: :cascade do |t|
     t.string   "userId"
@@ -48,15 +59,5 @@ ActiveRecord::Schema.define(version: 20160712044442) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "yeyaks", force: :cascade do |t|
-    t.integer  "res_date"
-    t.string   "res_time"
-    t.string   "res_team"
-    t.string   "real_team"
-    t.string   "res_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
 end

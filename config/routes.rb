@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/updateDB/:timeInfo' => 'home#updateDB'
   # :timeInfo looks like 2016_8 (year:2016 month:8)
-  get 'home/test1'
+  get 'home/test1' #달력
   get 'home/showDB'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,11 +13,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get '/search_result' => 'home#search_result'
-  get 'home/index'
   get '/' => 'home#index'
   get 'home/main_page'
   get 'home/template_index'
   get 'home/services'
+  get 'home/updateDB' => 'home#updateDB'
+  get 'home/board_view'
+  get 'home/board_write'
+  post '/write' => 'home#write'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

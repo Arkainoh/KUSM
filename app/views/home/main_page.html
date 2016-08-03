@@ -64,7 +64,7 @@
                         <a href="/home/test1">전체 일정</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="/home/board_write">광고하기</a>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -142,7 +142,7 @@
                     <a href="#"><%= current_user.real_team %></a>
                 </li>
                 <li>
-                    <a href="#"><%= current_user.last_sign_in_at %></a>
+                    <a href="#"><%= current_user.last_sign_in_at %> </a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
@@ -302,10 +302,51 @@
                                   <tr class="slide-content" id="slide_content_<%= y.id %>">
                                       <td colspan="4" class="myslide">
                                           <!-- 이부분에 게시글 및 신청 버튼 활성화 -->
-                                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
-                                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
-                                          하하하하핳하하하하하핳하하하하하핳하하하하하핳하하하하하핳하
-                                          <br/>
+                                           <div class="modal-body">
+                                               <div class="action-buttons">      
+                                                   <div class="btn-group" data-toggle="buttons">
+                                                        <label class="btn btn-info">
+                                                         <input type="radio" name="options" id="option1" autocomplete="off"> 매치
+                                                        </label>
+                                                        <label class="btn btn-info">
+                                                         <input type="radio" name="options" id="option2" autocomplete="off"> 교환
+                                                        </label>
+                                                        <label class="btn btn-info">
+                                                         <input type="radio" name="options" id="option3" autocomplete="off"> 모름
+                                                        </label>
+                                                   </div>
+                                                   <span class="request-button">
+                                                    <button type="button" class="btn btn-primary">신청</button>
+                                                   </span>
+                                                </div>
+                                                <div class="comment-form">
+                                                    <form>
+                                                      <div class="form-group">
+                                                        <!--<label for="recipient-name" class="control-label"></label>-->
+                                                        
+                                                        <div>
+                                                            <div class="input-group">
+                                                              <input type="text" class="form-control">
+                                                              <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button">댓글</button>
+                                                              </span>
+                                                            </div><!-- /input-group -->
+                                                        </div><!-- /.col-lg-6 -->
+                                                        
+                                                         <!--<input type="text" class="form-control" id="recipient-name" placeholder="댓글을 남기세요">-->
+                                                         <!--<button type="button" class="btn btn-primary">댓글</button>-->
+                                                      </div>
+                                                    </form>
+                                                </div>
+                                                <div class="panel panel-info">
+                                                  <div class="panel-heading">
+                                                    <h3 class="panel-title">현황Ex) 신청 2 교환 0 모름 2</h3>
+                                                  </div>
+                                                  <div class="panel-body">
+                                                    - 댓글댓글
+                                                  </div>
+                                                </div>
+                                              </div>
                                           <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-abc=<%= y.userId %>>신청</button>
                                       </td>
                                   </tr>

@@ -65,13 +65,48 @@ class HomeController < ApplicationController
     @event = Rsvinfo.all
   end
   
+  def write
+    
+    new_post = Post.new
+    
+    new_post.title = params[:title]
+    new_post.writer_info = params[:writer_info]
+    new_post.writer_team = params[:writer_team]
+    new_post.writer_contact = params[:writer_contact]
+    new_post.writer_time = params[:writer_time]
+    new_post.content = params[:content]
+    new_post.save
+
+    
+    
+    redirect_to "/home/board_view"
+  end
+  
+  def board_view
+    @post= Post.all
+    
+  end
+  
 
   def showDB
     @tuple = Rsvinfo.all
   end
   
   def updateDB
-      
+   # @groupNames = []
+    #Rsvinfo.all.each do |x|
+     # @groupNames << x.groupName
+    #end
+    @groupNames = Rsvinfo.select("groupName")
+    #@groupNames = @groupNames.to_a
+    
+    @groupNames.uniq!
+    
+    @groupNames.each do |x|
+      x.groupName.delete!('0-9')
+    end
+    
+    #중복 제거하기!
   end
 
   
