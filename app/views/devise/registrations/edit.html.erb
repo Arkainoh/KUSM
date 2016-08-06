@@ -1,43 +1,201 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+    <title>KUSM - Korea University Soccer Matcher</title>
+  <!--
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+-->
+    <!-- Bootstrap Core CSS -->
+    <!--
+    <link href="ubuntu/workspace/app/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stlyesheet">
+    
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    -->
+    <!-- <link rel="stylesheet" href="/path/to/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />-->
+    <!--
+    <script type="text/javascript" src="moment.js"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker.min.js"></script>
+    -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <style>
+      .mytuple:hover {
+          cursor:pointer;
+      }
+    </style>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+</head>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<body>
+    <!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="/home/main_page">KUSM</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/home/calendar">주간/월간 일정</a>
+                    </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
+                    <li>
+                        <a href="/home/board_view">매치 보드</a>
+                    </li>
+                    <li>
+                        <a href="/home/mypage">내 정보</a>
+                    </li>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">매치 보드  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/home/board_write">매치 등록</a>
+                            </li>
+                            <li>
+                                <a href="/home/board_view">매치 열람</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li class="active">
+                                <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
+                            </li>
+                            <li>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<div class="container">
+<h2>My Page</h2>
 
-<%= link_to "Back", :back %>
+
+<table class="table" style="table-layout:fixed; word-break:break-all; width:80% ">
+                <thead> 
+                  <tr> 
+                    <th style="color:green; font-size: 20px"><strong>수정하기 <% resource_name.to_s.humanize %></strong></th>
+                  </tr> 
+                </thead>
+               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= devise_error_messages! %> 
+                <tbody>
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 이메일    </div>
+                      </td>
+                      <td>
+                          <div class="panel-body"> <%= current_user.email %>    </div>
+                      </td>
+                  </tr>
+                  
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 이름    </div>
+                      </td>
+                      <td>
+                          <div class="panel-body">  <%= current_user.name %>    </div>
+                      </td>
+                  </tr>
+                  
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 비밀번호 번경 </br>
+                          <i>(희망하지 않을 시 비워두세요)</i></div>
+                      </td>
+                      <td>
+                          <div class="panel-body">  <%= f.password_field :password, autocomplete: "off" %>
+                            <% if @minimum_password_length %> <br />
+                            <em><%= @minimum_password_length %> characters minimum</em>
+                              <% end %>    </div>
+                      </td>
+                  </tr>
+                  
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 비밀번호 확인    </div>
+                      </td>
+                      <td>
+                          <div class="panel-body">  <%= f.password_field :password_confirmation, autocomplete: "off" %> </div>
+                      </td>
+                  </tr>
+                  
+                   <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 현재 비밀번호</div>
+                      </td>
+                      <td>
+                          <div class="panel-body">  <%= f.password_field :current_password, autocomplete: "off" %> </div>
+                      </td>
+                  </tr>
+                  
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 소속 팀    </div>
+                      </td>
+                      <td>
+                          <div class="panel-body">  <%= f.text_field :real_team, autofocus: true %>   </div>
+                      </td>
+                  </tr>
+
+                 
+      
+                </tbody>
+                
+              </table>
+              <div class="actions" >
+                <%= f.submit "수정하기" %>
+<!--                <button type="button" class="btn btn-info">수정하기</button>-->
+              </div>
+              
+             <%end%> 
+              
+
+
+<p style="margin-left:13cm"><%= button_to "탈퇴하기", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+
+<a href="/home/mypage" button type="button" class="btn btn-info">돌아가기</a>
+</div>
+</body>
+</html>

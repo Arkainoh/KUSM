@@ -1,16 +1,176 @@
-<h2>Forgot your password?</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <title>KUSM - Korea University Soccer Matcher</title>
+  <!--
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+-->
+    <!-- Bootstrap Core CSS -->
+    <!--
+    <link href="ubuntu/workspace/app/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stlyesheet">
+    
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    -->
+    <!-- <link rel="stylesheet" href="/path/to/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />-->
+    <!--
+    <script type="text/javascript" src="moment.js"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker.min.js"></script>
+    -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+      .mytuple:hover {
+          cursor:pointer;
+      }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    
+<!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="main_page">KUSM</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/home/calendar">주간/월간 일정</a>
+                    </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
+                    <li>
+                        <a href="/home/board_view">게시판</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="/home/mypage">내 정보</a>
+                    </li>
+                    -->
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">매치 보드  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/home/board_write">매치 등록</a>
+                            </li>
+                            <li>
+                                <a href="/home/board_view">매치 열람</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li class="active">
+                                <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
+                            </li>
+                            <li>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <div id="wrapper">
+
+
+        <!-- /#sidebar-wrapper -->
+                
+        
+        <!-- Page Content -->
+<div id="page-content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+<h2>비밀번호찾기</h2>
+
+<div style="width:60%;">
+    
+<table class="table" style="table-layout:fixed; word-break:break-all;">
+                <thead> 
+                  <tr> 
+                    <th style="color:green; font-size: 20px"><strong>내 정보</strong></th>
+                  </tr> 
+                </thead>
+                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
+                <tbody>
+                  <tr> <!-- 한 줄 -->
+                      <td>
+                          <div class="panel-body" style="padding-left: 1cm; color:gray; font-size: 15px "> 이메일    </div>
+                      </td>
+                      <td>
+                          <div class="panel-body">    
+                            <div class="field">
+                              <%= f.email_field :email, autofocus: true %>
+                            </div>   
+                          </div>
+                      </td>
+                  </tr>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="actions">
+                 
+      
+                </tbody>
+                
+              </table>
+                <div class="actions">
     <%= f.submit "Send me reset password instructions" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+              
+</div>
+<br>
+          
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

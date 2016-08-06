@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    
+    	<link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+        <script src='lib/jquery.min.js'></script>
+        <script src='lib/moment.min.js'></script>
+        <script src='fullcalendar/fullcalendar.js'></script>
+        <!--<script src='fullcalendar/lang-all.js'></script>-->
+      
+    	<script>
+
+
+	$(document).ready(function() {
+		
+		
+		$('#calendar').fullCalendar({
+			
+			//lang : 'ko',
+			header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'month,agendaWeek,agendaDay'
+					},
+			contentHeight: 680,
+			editable: false,
+			handleWindowResize : true,
+			//aspectRatio: 2,
+			eventLimit: true, //폰에서는 안보임, 주석 시 해당 유저의 예약일이 안뜸
+			    views: {
+        			month: {
+            			eventLimit: 2 // adjust to 6 only for agendaWeek/agendaDay
+        					}
+    					},
+			windowResize: function(view) {
+    		//alert('The calendar has adjusted to a window resize');
+			},
+		/*	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			monthNameShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        	dayNames: ['일','월','화','수','목','금','토'],
+        	dayNamesShort: ['일','월','화','수','목','금','토'],
+        */	
+			minTime: "08:00:00",
+			maxTime: "23:00:00",
+			defaultView:'agendaWeek',
+			allDaySlot : false,
+			selectable: true,
+			//displayEventEnd: 'true', //12~1 for month
+			slotLabelFormat : 'h(:mm)a',
+			events: [
+						<% @event.each do |y| %>
+							{
+								
+								<% if y.groupName.include?(current_user.real_team)   %> // case insensitive 하게 만들어야함
+                                    title: '<%=y.teamName%>', //, <%= y.userName %>
+									start: '<%=y.resDay%>T<%=y.hourStr.split[0]%>',
+									end :	'<%=y.resDay%>T<%=y.hourStr.split[2]%>',
+									url: 'http://yeyak.korea.ac.kr',
+                                    backgroundColor: '#000000'
+                                    
+                                    
+                                    
+                                   // borderColor : 'red'
+                                <% else %>
+								title: '<%=y.teamName%>', //, <%= y.userName %>
+								start: '<%=y.resDay%>T<%=y.hourStr.split[0]%>',
+								end :	'<%=y.resDay%>T<%=y.hourStr.split[2]%>',
+								url: 'http://yeyak.korea.ac.kr'	
+								<%end%>
+                                
+							},
+						<%end%>
+						{
+							title: '<%=current_user.real_team%>',
+							start: '2016-06-01',
+							backgroundColor: '#000000'
+						}
+					],
+					slotLabelFormat : 'h(:mm)a' // uppercase H for 24-hour clock
+			
+			//eventcolor: 'black',     // an option!
+            //textColor: 'yellow' // an option!
+			
+		});
+		
+	});
+
+
+    	</script> 
+        
+        
+        
+    </head>
+ 
+	<body>   
+	
+	
+	<!-- Navigation -->
+    
+    <!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="main_page">KUSM</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/home/calendar">주간/월간 일정</a>
+                    </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
+                    <li>
+                        <a href="/home/board_view">게시판</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="/home/mypage">내 정보</a>
+                    </li>
+                    -->
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">매치 보드  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/home/board_write">매치 등록</a>
+                            </li>
+                            <li>
+                                <a href="/home/board_view">매치 열람</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li class="active">
+                                <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
+                            </li>
+                            <li>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/home/mypage">
+                        <%= current_user.name %> <font size="3">님</font>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://kusm-arkainoh.c9users.io/search_result?searchquery=<%=current_user.real_team %>">소속팀: <%= current_user.real_team %></a>
+                </li>
+                
+                <li>
+                    <a href="/home/mypage">내 정보</a>
+                </li>
+                <!--
+                <li>
+                    <a href="#">마지막 로그인 일시<br>  <span style="margin-left: 0.5cm;"> <%= current_user.last_sign_in_at.strftime("%-y년 %-m월 %-d일") %><%=current_user.last_sign_in_at.strftime("%l:%M %p")%></span></a>
+                </li>
+                -->
+                <li>
+                    <a href="/users/sign_out">로그아웃</a>
+                </li>
+            </ul>
+            
+        </div>
+        <!-- /#sidebar-wrapper -->
+                
+        
+        <!-- Page Content -->
+<div id="page-content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12"><br><br>
+  		
+  		                        <div id='calendar'></div>
+  		                        
+  		                    </div>
+  		                </div>
+  		            </div>
+	            </div>
+	        </div>
+	   </div>
+	
+	</body>
+</html>

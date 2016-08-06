@@ -1,41 +1,468 @@
 <head>
     <style>
         .panel-head .date { float:right }
-        .panel-content {padding-top: 15px;}
+        .btns {
+                float: right;
+               }
         .category {padding-right: 5px;}
+        a {
+            color: black;
+          }
+         .container-fluid {
+            padding-top: 25px;
+         }
+         .glyphicon-pencil{
+            margin-right: 10px;
+         }
+         .panel-default{
+            margin-top: 10px;
+         }
     </style>
+    
 </head>
+
 <body>
-<div class="container-fluid">
-    <div class="panel panel-default">
-      <div class="panel-body">
-          <div class="panel-head">
-              <b class="category">분류</b><span class="title">제목</span><span class="date">작성시간</span></br>
-              <span class="writer">작성자정보</span>
+   
+   <!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="main_page">KUSM</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/home/calendar">주간/월간 일정</a>
+                    </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
+                    <li>
+                        <a href="/home/board_view">게시판</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="/home/mypage">내 정보</a>
+                    </li>
+                    -->
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">매치 보드  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/home/board_write">매치 등록</a>
+                            </li>
+                            <li>
+                                <a href="/home/board_view">매치 열람</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li class="active">
+                                <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
+                            </li>
+                            <li>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/home/mypage">
+                        <%= current_user.name %> <font size="3">님</font>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://kusm-arkainoh.c9users.io/search_result?searchquery=<%=current_user.real_team %>">소속팀: <%= current_user.real_team %></a>
+                </li>
+                
+                <li>
+                    <a href="/home/mypage">내 정보</a>
+                </li>
+                <!--
+                <li>
+                    <a href="#">마지막 로그인 일시<br>  <span style="margin-left: 0.5cm;"> <%= current_user.last_sign_in_at.strftime("%-y년 %-m월 %-d일") %><%=current_user.last_sign_in_at.strftime("%l:%M %p")%></span></a>
+                </li>
+                -->
+                <li>
+                    <a href="/users/sign_out">로그아웃</a>
+                </li>
+            </ul>
+            
+        </div>
+        <!-- /#sidebar-wrapper -->
+                
+        
+        <!-- Page Content -->
+<div id="page-content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12"><br><br>
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#home">All</a></a></li>
+            <li><a href="#menu1">팀</a></li>
+            <li><a href="#menu2">용병</a></li>
+            <div class="btns" style="border-bottom-width: 0px; margin-top: 12px;"><a href="/home/board_write"><span class=" glyphicon glyphicon-pencil" aria-hidden="true"></span>등록</a></div>
+        </ul>
+        
+    
+    
+    <!-- 여기가 구분선 -->
+    
+    <!--<div class="container-fluid">-->
+    
+    <!--    <div class="panel panel-default">-->
+    <!--      <div class="panel-body">-->
+    <!--          <div class="panel-head">-->
+    <!--              <b class="category">분류</b><br><font size="5"><span class="title">제목</span></font><span class="date">작성시간</span><br>-->
+    <!--              <span class="writer">유저 연락처</span>-->
+    <!--          </div>-->
+    <!--        <div class="panel-content">-->
+    <!--            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 시간 <br>-->
+    <!--            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 팀 <br>-->
+    <!--             내용-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    
+    <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        
+           <% @post.each do |p| %>
+        <a href="/post_view/<%= p.id %>" style="text-decoration: none;color:black">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="panel-head">
+                     <span style="background-color:black;color:white"><%= p.optionsRadios %></span><br>
+                     <font size="4"><strong><%= p.title %></strong></font>(<%=p.comments.count%>) <!-- 댓글 갯수 -->
+                            <br>
+                     <%
+                         if p.writer_time.include? "T"
+                             a = p.writer_time.split('T')
+                             
+                             dateinfo =a[0].split('-')[1]+a[0].split('-')[2]
+                        
+                            if dateinfo[0] == "0"
+                                mon = dateinfo[1]+"월"
+                            else
+                                mon = dateinfo[0..1]+"월"
+                            end
+                            if dateinfo[2] == "0"
+                                day = dateinfo[3]+"일"
+                            else
+                                day = dateinfo[2..3]+"일"
+                            end
+                    %>
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= a[1] %>
+                    <%
+                         else   
+                         
+                         dateinfo = p.writer_time.split(' ')[0]
+                         
+                        
+                        if dateinfo.split('-')[1][0] == "0"
+                            mon = dateinfo.split('-')[1][1]+"월"
+                        else
+                            mon = dateinfo.split('-')[1][0..1]+"월"
+                        end
+                        if dateinfo.split('-')[2][0] == "0"
+                            day = dateinfo.split('-')[2][1]+"일"
+                        else
+                            day = dateinfo.split('-')[2][0..1]+"일"
+                        end
+                         
+                     %>
+                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= p.writer_time.split(' ')[1] %> <%= p.writer_time.split(' ')[2] %>
+                     <%
+                         end
+                     %>
+                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= p.writer_info %> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= p.writer_team %><br>
+                 
+              </div>
+              
+            <div class="panel-content">
+                
+                 <!--<p style="white-space:pre-wrap;"> <%= p.content %> </p>-->
+                
+            </div>
+            <!-- 이부분에 계정 정보 관련 조건 추가 //추가완료-->
+                <!--<% if p.writer_info.include?(current_user.name) %>-->
+                <!--    <div class="btns">-->
+                        <!--수정버튼-->
+                <!--        <a href="/update_view/<%= p.id %>"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  </span></a>-->
+                        <!--삭제버튼-->
+                <!--        <a href="/destroy/<%= p.id %>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>-->
+                <!--    </div>-->
+                <!--<% end %>-->
           </div>
-        <div class="panel-content">글 내용</div>
-      </div>
+        </div>
+        </a>
+        <% end %>
     </div>
+    
+    <div id="menu1" class="tab-pane fade">
+      <% @post.each do |p| 
+         if p.optionsRadios == "팀"
+      %>
+      
+        <a href="/post_view/<%= p.id %>" style="text-decoration: none;color:black">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="panel-head">
+                     <span style="background-color:black;color:white"><%= p.optionsRadios %></span><br>
+                     <font size="4"><strong><%= p.title %></strong></font>(<%=p.comments.count%>) <!-- 댓글 갯수 -->
+                            <br>
+                     <%
+                         if p.writer_time.include? "T"
+                             a = p.writer_time.split('T')
+                             
+                             dateinfo =a[0].split('-')[1]+a[0].split('-')[2]
+                        
+                            if dateinfo[0] == "0"
+                                mon = dateinfo[1]+"월"
+                            else
+                                mon = dateinfo[0..1]+"월"
+                            end
+                            if dateinfo[2] == "0"
+                                day = dateinfo[3]+"일"
+                            else
+                                day = dateinfo[2..3]+"일"
+                            end
+                    %>
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= a[1] %>
+                    <%
+                         else   
+                         
+                         dateinfo = p.writer_time.split(' ')[0]
+                         
+                        
+                        if dateinfo.split('-')[1][0] == "0"
+                            mon = dateinfo.split('-')[1][1]+"월"
+                        else
+                            mon = dateinfo.split('-')[1][0..1]+"월"
+                        end
+                        if dateinfo.split('-')[2][0] == "0"
+                            day = dateinfo.split('-')[2][1]+"일"
+                        else
+                            day = dateinfo.split('-')[2][0..1]+"일"
+                        end
+                         
+                     %>
+                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= p.writer_time.split(' ')[1] %> <%= p.writer_time.split(' ')[2] %>
+                     <%
+                         end
+                     %>
+                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= p.writer_info %> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= p.writer_team %><br>
+                 
+              </div>
+              
+            <div class="panel-content">
+                
+                 <!--<p style="white-space:pre-wrap;"> <%= p.content %> </p>-->
+                
+                
+                
+            </div>
+            <!-- 이부분에 계정 정보 관련 조건 추가 //추가완료-->
+                <!--<% if p.writer_info.include?(current_user.name) %>-->
+                <!--    <div class="btns">-->
+                        <!--수정버튼-->
+                <!--        <a href="/update_view/<%= p.id %>"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  </span></a>-->
+                        <!--삭제버튼-->
+                <!--        <a href="/destroy/<%= p.id %>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>-->
+                <!--    </div>-->
+                <!--<% end %>-->
+          </div>
+        </div>
+        </a>
+        <%      end
+            end %>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <% @post.each do |p| 
+         if p.optionsRadios == "용병"
+      %>
+      
+        <a href="/post_view/<%= p.id %>" style="text-decoration: none;color:black">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="panel-head">
+                     <span style="background-color:black;color:white"><%= p.optionsRadios %></span><br>
+                     <font size="4"><strong><%= p.title %></strong></font>(<%=p.comments.count%>) <!-- 댓글 갯수 -->
+                            <br>
+                     <%
+                         if p.writer_time.include? "T"
+                             a = p.writer_time.split('T')
+                             
+                             dateinfo =a[0].split('-')[1]+a[0].split('-')[2]
+                        
+                            if dateinfo[0] == "0"
+                                mon = dateinfo[1]+"월"
+                            else
+                                mon = dateinfo[0..1]+"월"
+                            end
+                            if dateinfo[2] == "0"
+                                day = dateinfo[3]+"일"
+                            else
+                                day = dateinfo[2..3]+"일"
+                            end
+                    %>
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= a[1] %>
+                    <%
+                         else   
+                         
+                         dateinfo = p.writer_time.split(' ')[0]
+                         
+                        
+                        if dateinfo.split('-')[1][0] == "0"
+                            mon = dateinfo.split('-')[1][1]+"월"
+                        else
+                            mon = dateinfo.split('-')[1][0..1]+"월"
+                        end
+                        if dateinfo.split('-')[2][0] == "0"
+                            day = dateinfo.split('-')[2][1]+"일"
+                        else
+                            day = dateinfo.split('-')[2][0..1]+"일"
+                        end
+                         
+                     %>
+                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= mon %> <%= day %> <%= p.writer_time.split(' ')[1] %> <%= p.writer_time.split(' ')[2] %>
+                     <%
+                         end
+                     %>
+                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= p.writer_info %> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= p.writer_team %><br>
+
+                 
+              </div>
+              
+            <div class="panel-content">
+                
+                 <!--<p style="white-space:pre-wrap;"> <%= p.content %> </p>-->
+                
+                
+                
+            </div>
+            <!-- 이부분에 계정 정보 관련 조건 추가 //추가완료-->
+                <!--<% if p.writer_info.include?(current_user.name) %>-->
+                <!--    <div class="btns">-->
+                        <!--수정버튼-->
+                <!--        <a href="/update_view/<%= p.id %>"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  </span></a>-->
+                        <!--삭제버튼-->
+                <!--        <a href="/destroy/<%= p.id %>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>-->
+                <!--    </div>-->
+                <!--<% end %>-->
+          </div>
+        </div>
+        </a>
+        <%     end
+            end %>
+    </div>
+
+  </div>
+    
+    <!--
+    <table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>제목</th>
+      <th>시간</th>
+      <th>팀</th>
+    </tr>
+  </thead>
+  <tbody>
+            <% @post.each do |p| %>
+    <tr>
+      <th scope="row"><%= p.optionsRadios %></th>
+      <td><%= p.title %></td>
+      <%
+                         if p.writer_time.include? "T"
+                             a = p.writer_time.split('T')
+                             
+                             dateinfo =a[0].split('-')[1]+a[0].split('-')[2]
+                        
+                            if dateinfo[0] == "0"
+                                mon = dateinfo[1]+"월"
+                            else
+                                mon = dateinfo[0..1]+"월"
+                            end
+                            if dateinfo[2] == "0"
+                                day = dateinfo[3]+"일"
+                            else
+                                day = dateinfo[2..3]+"일"
+                            end
+                    %>
+      <td><%= mon %> <%= day %> <%= a[1] %></td>
+       <%
+                         else   
+                         
+                         dateinfo = p.writer_time.split(' ')[0]
+                         
+                        
+                        if dateinfo.split('-')[1][0] == "0"
+                            mon = dateinfo.split('-')[1][1]+"월"
+                        else
+                            mon = dateinfo.split('-')[1][0..1]+"월"
+                        end
+                        if dateinfo.split('-')[2][0] == "0"
+                            day = dateinfo.split('-')[2][1]+"일"
+                        else
+                            day = dateinfo.split('-')[2][0..1]+"일"
+                        end
+                         
+                     %>
+                    <td><%= mon %> <%= day %> <%= p.writer_time.split(' ')[1] %> <%= p.writer_time.split(' ')[2] %></td>
+                    <%
+                         end
+                     %>
+      <td><%= p.writer_team %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+-->
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
-<% @post.each do |p| %>
-제목 : <%= p.title %> <br>
-글 내용 : <%= p.content %><br>
-정보 : <%= p.writer_info %><br>
-팀 : <%= p.writer_team %><br>
-연락처 : <%= p.writer_contact %><br>
-매치 시간 : <%= p.writer_time %><br>
-
-<hr>
-<% end %>
+<script>
+$(document).ready(function(){
+    $(".nav-pills a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
 </body>
 
-        <!--
-        제목 : title
-        이름(ID) : writer_info
-        팀명 : writer_team
-        연락처 : writer_contact
-        시간 : writer_time //경기하는 시간
-        내용 : content
-        
-        -->

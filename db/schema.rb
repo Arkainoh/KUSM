@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802052951) do
+ActiveRecord::Schema.define(version: 20160806094505) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "useremail"
+    t.string   "username"
+    t.string   "userteam"
+    t.string   "content"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -20,14 +30,23 @@ ActiveRecord::Schema.define(version: 20160802052951) do
     t.string   "writer_contact"
     t.string   "writer_time"
     t.string   "content"
+    t.string   "optionsRadios"
+    t.integer  "rsvinfo_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "rsv_dates", force: :cascade do |t|
+    t.string   "timeStr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rsvinfos", force: :cascade do |t|
     t.string   "userId"
     t.string   "userName"
     t.string   "groupName"
+    t.string   "teamName"
     t.string   "resDay"
     t.string   "hourStr"
     t.integer  "preNum"
@@ -54,7 +73,6 @@ ActiveRecord::Schema.define(version: 20160802052951) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "real_team"
-    t.string   "team"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

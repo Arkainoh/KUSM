@@ -43,8 +43,8 @@
 
 <body>
     <!-- Navigation -->
+    
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -55,54 +55,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="main_page.html">KUSM</a>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="main_page">KUSM</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/home/test1">전체 일정</a>
+                        <a href="/home/calendar">주간/월간 일정</a>
                     </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
                     <li>
-                        <a href="/home/board_write">광고하기</a>
+                        <a href="/home/board_view">게시판</a>
                     </li>
+                    <!--
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="/home/mypage">내 정보</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                    -->
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">매치 보드  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                                <a href="/home/board_write">매치 등록</a>
                             </li>
                             <li>
-                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-item.html">Single Portfolio Item</a>
+                                <a href="/home/board_view">매치 열람</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-home-1.html">Blog Home 1</a>
-                            </li>
-                            <li>
-                                <a href="blog-home-2.html">Blog Home 2</a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">Blog Post</a>
-                            </li>
-                        </ul>
-                    </li>
+                    </li>-->
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -111,14 +94,9 @@
                                 <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
                             </li>
                             <li>
-                                <a href="http://yeyak.korea.ac.kr">고려대학교 시설예약</a>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
                             </li>
-                            <li>
-                                <a href="404.html">404</a>
-                            </li>
-                            <li>
-                                <a href="pricing.html">Pricing Table</a>
-                            </li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -134,19 +112,22 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        <%= current_user.name %>
+                    <a href="/home/mypage">
+                        <%= current_user.name %> <font size="3">님</font>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><%= current_user.real_team %></a>
+                    <a href="http://kusm-arkainoh.c9users.io/search_result?searchquery=<%=current_user.real_team %>">소속팀: <%= current_user.real_team %></a>
                 </li>
+                
                 <li>
-                    <a href="#"><%= current_user.last_sign_in_at %> </a>
+                    <a href="/home/mypage">내 정보</a>
                 </li>
+                <!--
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">마지막 로그인 일시<br>  <span style="margin-left: 0.5cm;"> <%= current_user.last_sign_in_at.strftime("%-y년 %-m월 %-d일") %><%=current_user.last_sign_in_at.strftime("%l:%M %p")%></span></a>
                 </li>
+                -->
                 <li>
                     <a href="/users/sign_out">로그아웃</a>
                 </li>
@@ -160,14 +141,18 @@
         
         <div id="page-content-wrapper">
             <div class="row">
-                <div class="col-md-8">
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> <= 이거 다른 곳으로 옮겨야 합니당
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
+                <div class="col-md-9">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
                         
-                        <!-- 대문 이미지 -->
-                        <img style="width:100%;height:300px;border-radius:30px" src="/images/fortest.jpg"/>
+                        <!-- 대문 이미지 
+                        <img style="width:100%;height:300px;border-radius:30px" src="/assets/fortest.jpg"/>-->
+                        <h3>공지사항</h3>
+                        <p>
+                            <h4>다음 예약 일정: <%= @notice.strip %></h4>
+                            <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">예약하기</a>
+                        </p>
                         <hr/>
                         <!-- 탭 테스트 -->
                         <div>
@@ -176,6 +161,7 @@
                           <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">간편검색</a></li>
                             <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">달력으로 검색</a></li>
+                            
                           </ul>
                         
                           <!-- Tab panes -->
@@ -237,21 +223,9 @@
                           </div>
                         <hr/>
                         </div>
-                        <!-- /탭 테스트 -->
-                        
-                        <h1>예약 현황</h1>
-                        <!--timetable-->
-                        <% todayDate = @now.to_a %>
-                    
-                        <div class="timetable">
-
-                        <% for i in todayDate[3]..@last_day.to_i %>
                           <% 
-                              date = Time.new( @t[0], @t[1], i)
+                              date = Time.new(@t[0], @t[1], @t[2])
                               da = date.to_a # da(datearray) => [sec, min, hour, day, month, year, wday, yday, isdst, zone] 
-                          %> 
-
-                          <%
                              day = case da[6]  # da[6], 즉 wday는 일,월,화,수,목,금,토가 각각 0,1,2,3,4,5,6으로 표현된다    
                              when 0 then "일"
                              when 1 then "월"
@@ -262,139 +236,96 @@
                              else        "토"
                              end
                           %>
-                          
-                          <% if date.yday == @now.yday %>
+                
+                <table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
+                    
+                <thead> 
+                <th colspan="5">
+                    <h3>오늘의 일정</h3>
+                    <% if date.yday == @now.yday %>
                             <div class="date-label" id="today"> <%= da[4] %>월 <%= da[3] %>일 <%= day %>요일</div>
                           <% else %>
                             <div class="date-label" id="<%=da[5]%>_<%=da[4]%>_<%=da[3]%>"> <%= da[4] %>월 <%= da[3] %>일 <%= day %>요일</div>
                           <% end %>
-                            <div class="schedule">
-                              <table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
-                                <thead> 
-                                  <tr style="background-color:black;color:#ccc"> 
-                                    <th>시간</th> 
-                                    <th>예약팀</th>
-                                    <th>소속팀</th>
-                                    <th>예약자</th> 
-                                    <!--<th>신청</th>--> 
-                                  </tr> 
-                                </thead> 
-                                <tbody>
-                                  <% @yeyak.each do |y| %>
-                                  <% if i < 10 
-                                      j = "0"+i.to_s
-                                      else
-                                      j = i.to_s
-                                  end %>
-                                  <% if y.resDay.split('-')[2] == j %>
-                              
-                                  <tr class="success mytuple" onclick="mySlider(<%= y.id %>)"> <!-- 한 줄 -->
-                                    <th scope=row><%= y.hourStr.split(' ~ ')[0] %></th> 
-                                      <td><%= y.groupName %></td>
-                                      <td>-</td> 
-                                      <td><%= y.userName %></td> 
-                                      <!--
-                                      <td>
-                                        <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-abc=<%= y.userId %>>신청</button>
-                                      </td> 
-                                      -->
-                                  </tr>
-                                  <tr class="slide-content" id="slide_content_<%= y.id %>">
-                                      <td colspan="4" class="myslide">
-                                          <!-- 이부분에 게시글 및 신청 버튼 활성화 -->
-                                           <div class="modal-body">
-                                               <div class="action-buttons">      
-                                                   <div class="btn-group" data-toggle="buttons">
-                                                        <label class="btn btn-info">
-                                                         <input type="radio" name="options" id="option1" autocomplete="off"> 매치
-                                                        </label>
-                                                        <label class="btn btn-info">
-                                                         <input type="radio" name="options" id="option2" autocomplete="off"> 교환
-                                                        </label>
-                                                        <label class="btn btn-info">
-                                                         <input type="radio" name="options" id="option3" autocomplete="off"> 모름
-                                                        </label>
-                                                   </div>
-                                                   <span class="request-button">
-                                                    <button type="button" class="btn btn-primary">신청</button>
-                                                   </span>
-                                                </div>
-                                                <div class="comment-form">
-                                                    <form>
-                                                      <div class="form-group">
-                                                        <!--<label for="recipient-name" class="control-label"></label>-->
-                                                        
-                                                        <div>
-                                                            <div class="input-group">
-                                                              <input type="text" class="form-control">
-                                                              <span class="input-group-btn">
-                                                                <button class="btn btn-default" type="button">댓글</button>
-                                                              </span>
-                                                            </div><!-- /input-group -->
-                                                        </div><!-- /.col-lg-6 -->
-                                                        
-                                                         <!--<input type="text" class="form-control" id="recipient-name" placeholder="댓글을 남기세요">-->
-                                                         <!--<button type="button" class="btn btn-primary">댓글</button>-->
-                                                      </div>
-                                                    </form>
-                                                </div>
-                                                <div class="panel panel-info">
-                                                  <div class="panel-heading">
-                                                    <h3 class="panel-title">현황Ex) 신청 2 교환 0 모름 2</h3>
-                                                  </div>
-                                                  <div class="panel-body">
-                                                    - 댓글댓글
-                                                  </div>
-                                                </div>
-                                              </div>
-                                          <button type="button" class="btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" data-abc=<%= y.userId %>>신청</button>
-                                      </td>
-                                  </tr>
-                                  
-                                  <% end %>
-                                  <% end %>
-                                </tbody> 
-                              </table>
-                             </div>  
+                          <br>
+                </th>
+                  <tr style="background-color:black;color:#ccc"> 
+                    <th>시간</th> 
+                    <th>예약팀</th>
+                    <th>소속팀</th>
+                    <th>예약자(ID)</th>
+                    <th>게시글</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <%
+                  @yeyak.each do |y|
+                  %>
+                  <tr class="mytuple" onclick="mySlider(<%= y.id %>)">
+                      <td><%= y.hourStr.split(' ~ ')[0] %></td>
+                      <td><%= y.groupName %></td>
+                      <td><%= y.teamName %></td> 
+                      <td><%= y.userName %>(<%= y.userId %>)</td> 
+                      <td>
+                      <form action="/home/board_write" method="get">
+                          <%= y.posts.count %>&nbsp;&nbsp;
+                            <input name="resDay" type="hidden" value="<%=y.resDay%>"/>
+                            <input name="startTime" type="hidden" value="<%=y.getRes_startTime << ":00" %>"/>
+                              <button type="submit"><span class=" glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                      </form>
+                      </td>
+                          <!-- 이부분에 게시글 및 신청 버튼 활성화 -->
+                         
+                  </tr>
+                  <tr class="slide-content" id="slide_content_<%= y.id %>">
+                      <td colspan="5" class="myslide">
+                          <!-- 이부분에 게시글 및 신청 버튼 활성화 -->
+                          <% y.posts.each do |x|%>
+                            <a href="/post_view/<%= x.id%>" style="text-decoration: none;color:black">
+                            <span style="background-color:black;color:white"><%= x.optionsRadios %></span> <strong><%= x.title %></strong>(<%= x.comments.count%>) <font color="gray"><%= time_ago_in_words(x.updated_at) %> ago</font>
+                            <br>by. <%= x.writer_info %>
+                            </a>
+                            <hr>
                           <% end %>
-                        </div>
-                        <a href="#">맨위로</a>
+                      </td>
+                  </tr>
+                  
+                  <% end %>
+                </tbody>
+              </table>
+              
                         <!--/.timetable-->
                     </div>
                 </div>
                 </div>
                 </div> <!-- /.col-md-8 -->
-                <div class="col-md-4">
-                    <h1>Recent Posts</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                <div class="col-md-3">
+                    <h3 style="text-align:center"><a href="/home/board_view">최근 게시글</a></h3>
+                    <hr>
+                        <% maxLength = (@records.count > 5)?5:@records.count %>
+                        <% for i in 0..maxLength-1 %>
+                            <a href="/post_view/<%=@records[i].id%>" style="text-decoration: none;color:black">
+                                <!--<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"> <span style ="color: green; "><b><%= @records[i].optionsRadios %></b></span></span><br>-->
+                              <span style="background-color:black;color:white"><%= @records[i].optionsRadios %></span><br>
+                            <font size="4"><strong><%= @records[i].title %></strong></font>(<%=@records[i].comments.count%>) <!-- 댓글 갯수 -->
+                            <br>
+                            <!--<%= @records[i].created_at %>-->
+                            <font color="gray"><%= time_ago_in_words(@records[i].updated_at) %> ago</font><br>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= @records[i].writer_info %><br><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= @records[i].writer_team %><br>
+                            <p style="overflow:hidden; line-height: 1.2em; height: 2.4em;"><%= @records[i].content %></p>                           
+                            </a>
+                            <br>
+                    <% end %>
                         <!-- <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
                 </div> <!-- /.col-md-4 -->
             </div> <!-- /.row -->
         </div> <!-- /#page-content-wrapper -->
-      </div>
+     
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
     <!-- Menu Toggle Script -->
-    <script>
     
-        $(".slide-content").hide();
-    
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-
-        function mySlider(slideId) {
-            $("#slide_content_"+slideId).slideToggle();
-        }
-    </script>
 
 </body>
 

@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,27 @@
   
   </head>
 <body>
+  
+<%= render 'layouts/messages' %>
 <%= yield %>
+<script>
+                
+        $( document ).ready(function() {
+            
+        });
+    
+        $(".slide-content").hide();
+    
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
 
+        function mySlider(slideId) {
+            $("#slide_content_"+slideId).slideToggle();
+        }
+        
+        
+    </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ class CreateRsvinfos < ActiveRecord::Migration
       t.string   :userId
       t.string   :userName
       t.string   :groupName
+      t.string   :teamName
       t.string   :resDay
       t.string   :hourStr
       t.integer   :preNum

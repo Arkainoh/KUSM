@@ -8,7 +8,9 @@ class CreatePosts < ActiveRecord::Migration
        t.string :writer_contact
        t.string :writer_time 
        t.string :content
-
+       t.string :optionsRadios
+       t.integer :rsvinfo_id
+      
       t.timestamps null: false
     end
   end

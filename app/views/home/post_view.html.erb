@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>KUSM - Korea University Soccer Matcher</title>
+    <style>
+        .panel-head .date { float:right }
+        .btns {
+                float: right;
+               }
+        .category {padding-right: 5px;}
+        a {
+            color: black;
+          }
+         .container-fluid {
+            padding-top: 25px;
+         }
+         .glyphicon-pencil{
+            margin-right: 10px;
+         }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="/home/main_page">KUSM</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/home/calendar">주간/월간 일정</a>
+                    </li>
+               <!--     <li>
+                        <a href="/home/board_write">매치등록</a>
+                    </li>-->
+                    <li>
+                        <a href="/home/board_view">게시판</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li class="active">
+                                <a href="http://portal.korea.ac.kr">고려대학교 포털시스템</a>
+                            </li>
+                            <li>
+                                <a href="https://yeyak.korea.ac.kr/cop/facilityUniv/facilityUnivList.do?siteId=reservation&deptSeq=7196">고려대학교 시설예약</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/home/mypage">
+                        <%= current_user.name %> <font size="3">님</font>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://kusm-arkainoh.c9users.io/search_result?searchquery=<%=current_user.real_team %>">소속팀: <%= current_user.real_team %></a>
+                </li>
+                
+                <li>
+                    <a href="/home/mypage">내 정보</a>
+                </li>
+                <!--
+                <li>
+                    <a href="#">마지막 로그인 일시<br>  <span style="margin-left: 0.5cm;"> <%= current_user.last_sign_in_at.strftime("%-y년 %-m월 %-d일") %><%=current_user.last_sign_in_at.strftime("%l:%M %p")%></span></a>
+                </li>
+                -->
+                <li>
+                    <a href="/users/sign_out">로그아웃</a>
+                </li>
+            </ul>
+            
+        </div>
+        <!-- /#sidebar-wrapper -->
+                
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="panel-head">
+                                            <b class="category"><span style="background-color:black;color:white"><%= @post.optionsRadios %></span></b>
+                                                <span class="date">
+                     
+                                                     <%
+                                                          day = case @post.updated_at.strftime("%a")
+                                 when "Sun" then "일"
+                                 when "Mon" then "월"
+                                 when "Tue" then "화"
+                                 when "Wed" then "수"
+                                 when "Thu" then "목"
+                                 when "Fri" then "금"
+                                 else            "토"
+                                 end
+                     %>
+                     
+                 <%= @post.updated_at.strftime("%-m월 %-d일") %> <%=day%> <%=@post.updated_at.strftime("%l:%M %p") %>
+                 <!-- <%= time_ago_in_words(@post.created_at) %> ago 몇 분 전-->
+                 </span>
+                 <br>
+                 <span class="title"><font size="5"><%= @post.title %></font></span><br>
+                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.writer_time %> <br>
+                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= @post.writer_team %> <br>
+                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= @post.writer_info %> <br>
+                 <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= @post.writer_contact %> <br>
+              <br>
+             
+          </div>
+          
+        <div class="panel-content">
+            </br>
+             <p style="white-space:pre-wrap;"> <%= @post.content %> </p>
+            
+            
+            
+        </div>
+        <!-- 이부분에 계정 정보 관련 조건 추가 //추가완료-->
+            <% if @post.writer_info.include?(current_user.name) %>
+                <div class="btns">
+                    <!--수정버튼-->
+                    <a href="/update_view/<%= @post.id %>"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  </span></a>
+                    <!--삭제버튼-->
+                    <a href="/destroy/<%= @post.id %>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </div>
+            <% end %>
+            <br>
+            <strong>Comments(<%= @post.comments.count%>)</strong>
+            <div class="well">
+                <ul class="list-group comment-list" id="comments_<%=@post.id%>">
+                  <% @post.comments.each do |y|%> <!-- 이게 바로 1:N의 마술이다 -->
+                  <li class="list-group-item"><a href="#">
+                      <%=y.username%>(<%= y.userteam%>)
+                      </a> <%=y.content%></li>
+                  <% end %>
+                  
+                </ul>
+                
+                <div class="form-group comment-write" id="comment_write_<%=@post.id%>">
+                    <label for="exampleInput">댓글달기</label>
+                    <input class="form-control" type="hidden" id="comment_useremail_<%=@post.id%>" value="<%=current_user.email%>"> 
+                    <input class="form-control" type="hidden" id="comment_username_<%=@post.id%>"  placeholder="Username" value="<%=current_user.name%>">
+                    <input class="form-control" type="hidden" id="comment_userteam_<%=@post.id%>"  placeholder="Userteam" value="<%=current_user.real_team%>">
+                    
+                    <div class="row">
+                      
+                      <div class="col-md-11">
+                        <input type="text" class="form-control" id="comment_content_<%=@post.id%>" placeholder="Comment" value=""> <!--name="commentcontent"-->     
+                      </div>
+                      <div class="col-md-1">
+                        <button type="submit" class="btn btn-alert comment-submit" value="<%=@post.id%>">확인</button>  
+                      </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+
+
+<!-- related post -->
+
+
+</div>
+
+</div>
+</div>
+<script>
+    
+    $(".comment-submit").click(function() {
+              
+              cpostid = this.value;
+              
+              ccontent = $("#comment_content_"+cpostid).val();
+              cuseremail = $("#comment_useremail_"+cpostid).val();
+              cusername = $("#comment_username_"+cpostid).val();
+              cuserteam = $("#comment_userteam_"+cpostid).val();
+              
+              $.ajax({
+                  
+                method: "POST",
+                url: "/home/comment_write",
+                data: { commentuseremail:cuseremail, commentusername: cusername, commentuserteam:cuserteam, commentcontent: ccontent, commentpostid: cpostid },
+                successs: function(){//.comment-list 
+                  $("#comments_"+cpostid)
+                  .append("<li class=\"list-group-item\"><a href=\"#\">"+cusername+"("+cuserteam+")"+"</a> "+ccontent+"</li>");
+                  ccontent = $("#comment_content_"+cpostid).val('');
+                },
+                error: function(){$("#comments_"+cpostid)
+                  .append("<li class=\"list-group-item\"><a href=\"#\">"+cusername+"("+cuserteam+")"+"</a> "+ccontent+"</li>");
+                  ccontent = $("#comment_content_"+cpostid).val('');}
+              })
+            });
+            
+             
+        
+</script>
+</body>
+</html>
