@@ -96,7 +96,7 @@ class HomeController < ApplicationController
   
   
   def main_page
-    
+   
      #@yeyak = Rsvinfo.all
      
      @records = Post.order(updated_at: :desc)  #updated_at ? created_at ?
